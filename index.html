@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xem Hết Nhé Baby ❤️</title>
+    <!-- 
+    HƯỚNG DẪN SỬ DỤNG:
+    1. Tạo thư mục "images" trong cùng thư mục với file này
+    2. Đặt 5 ảnh vào thư mục images với tên: anh1.jpg, anh2.jpg, anh3.jpg, anh4.jpg, anh5.jpg
+    3. Đặt file nhạc vào cùng thư mục với tên: music.mp3
+    4. Mở file này bằng Live Server trong VS Code hoặc mở trực tiếp trên trình duyệt
+    -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-3d {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b9d;
+            text-shadow: 
+                2px 2px 0px #ff1744,
+                4px 4px 0px #e91e63,
+                6px 6px 0px #c2185b,
+                8px 8px 20px rgba(233, 30, 99, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            animation: slideUp 2s ease-out forwards;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 500px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+            opacity: 0;
+            animation: fadeInSlideshow 1s ease-in-out 2.5s forwards;
+        }
+
+        @keyframes fadeInSlideshow {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 6s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            z-index: 1000;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .text-3d {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .slideshow-container {
+                width: 95%;
+                height: 400px;
+            }
+            
+            .music-control {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-3d {
+                font-size: 1.5rem;
+                padding: 0 20px;
+            }
+            
+            .slideshow-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-3d">
+            Nghe Hết Nhé Baby ❤️
+        </div>
+        
+        <div class="slideshow-container">
+            <!-- Ảnh của bạn sẽ được load từ thư mục images -->
+            <div class="slide active">
+                <img src="images/anh1.jpg" alt="Ảnh 1" onerror="this.src='https://via.placeholder.com/400x500/ff69b4/ffffff?text=Ảnh+1'">
+            </div>
+            <div class="slide">
+                <img src="images/anh2.jpg" alt="Ảnh 2" onerror="this.src='https://via.placeholder.com/400x500/ff1744/ffffff?text=Ảnh+2'">
+            </div>
+            <div class="slide">
+                <img src="images/anh3.jpg" alt="Ảnh 3" onerror="this.src='https://via.placeholder.com/400x500/e91e63/ffffff?text=Ảnh+3'">
+            </div>
+            <div class="slide">
+                <img src="images/anh4.jpg" alt="Ảnh 4" onerror="this.src='https://via.placeholder.com/400x500/c2185b/ffffff?text=Ảnh+4'">
+            </div>
+            <div class="slide">
+                <img src="images/anh5.jpg" alt="Ảnh 5" onerror="this.src='https://via.placeholder.com/400x500/ad1457/ffffff?text=Ảnh+5'">
+            </div>
+        </div>
+        
+        <div class="hearts"></div>
+    </div>
+
+    <!-- File nhạc của bạn - TỰ ĐỘNG PHÁT -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="music.mp3" type="audio/mpeg">
+        <source src="music.ogg" type="audio/ogg">
+        Trình duyệt không hỗ trợ audio.
+    </audio>
+
+    <button class="music-control" id="musicToggle">🎵</button>
+
+    <script>
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Start slideshow after text animation
+        setTimeout(() => {
+            setInterval(showNextSlide, 3000); // Chuyển ảnh mỗi 3 giây
+        }, 3000);
+
+        // Floating hearts effect
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            
+            document.querySelector('.hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+
+        // Music control - TỰ ĐỘNG PHÁT
+        const music = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        let isPlaying = true; // Bắt đầu với trạng thái đang phát
+
+        // Thử phát nhạc ngay khi tải trang
+        window.addEventListener('load', () => {
+            music.play().then(() => {
+                musicToggle.innerHTML = '⏸️';
+                isPlaying = true;
+                console.log('Nhạc đã được phát tự động');
+            }).catch(e => {
+                console.log('Không thể phát nhạc tự động, cần tương tác người dùng:', e);
+                musicToggle.innerHTML = '🎵';
+                isPlaying = false;
+            });
+        });
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                music.pause();
+                musicToggle.innerHTML = '🎵';
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    musicToggle.innerHTML = '⏸️';
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log('Không thể phát nhạc:', e);
+                });
+            }
+        });
+
+        // Fallback: Phát nhạc sau lần click đầu tiên
+        document.addEventListener('click', () => {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    musicToggle.innerHTML = '⏸️';
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log('Không thể phát nhạc:', e);
+                });
+            }
+        }, { once: true });
+
+        // Handle visibility change (for mobile browsers)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                music.pause();
+            } else if (isPlaying) {
+                music.play().catch(e => {
+                    console.log('Không thể tiếp tục phát nhạc:', e);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
