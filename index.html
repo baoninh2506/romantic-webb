@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chúc Mừng Sinh Nhật 🎉</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #E0FFFF, #007f7f);
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            color: white;
+            margin-top: 30px;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .slideshow {
+            margin: 40px auto;
+            width: 320px;
+            height: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+            .slideshow img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 16px;
+                position: absolute;
+                opacity: 0;
+                transition: opacity 1s ease;
+            }
+
+                .slideshow img.active {
+                    opacity: 1;
+                    z-index: 1;
+                }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .play-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #4ecdc4);
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+            .play-button:hover {
+                transform: scale(1.05);
+            }
+
+        #wish {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.3rem;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+            line-height: 1.5;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎂 CHÚC MỪNG SINH NHẬT 🎂</h1>
+
+    <div class="slideshow" id="slideshow">
+        <img src="images/anh0.jpg" class="active" alt="ảnh 0" />
+        <img src="images/anh1.jpg" alt="ảnh 1" />
+        <img src="images/anh2.jpg" alt="ảnh 2" />
+        <img src="images/anh3.jpg" alt="ảnh 3" />
+        <img src="images/anh4.jpg" alt="ảnh 4" />
+        <img src="images/anh5.jpg" alt="ảnh 5" />
+    </div>
+
+    <div class="button-container">
+        <button class="play-button" onclick="startParty()">🎉 Bắt đầu buổi tiệc 🎉</button>
+    </div>
+
+    <p id="wish"></p>
+
+    <audio id="audio" src="music/happy-birthday.mp3" loop></audio>
+
+    <script>
+        const slides = document.querySelectorAll("#slideshow img");
+        let current = 0;
+        let interval;
+
+        function showSlide(index) {
+            slides.forEach((img, i) => {
+                img.classList.remove("active");
+                if (i === index) img.classList.add("active");
+            });
+        }
+
+        function startSlideshow() {
+            interval = setInterval(() => {
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            }, 3000);
+        }
+
+        function startParty() {
+            document.getElementById("audio").play();
+            startSlideshow();
+            typeWish();
+        }
+
+        const message = "Chúc bạn một sinh nhật thật đặc biệt, tràn đầy hạnh phúc, yêu thương và những kỷ niệm đáng nhớ! ❤️";
+        let idx = 0;
+
+        function typeWish() {
+            const el = document.getElementById("wish");
+            if (idx < message.length) {
+                el.innerHTML += message[idx];
+                idx++;
+                setTimeout(typeWish, 60);
+            }
+        }
+    </script>
+</body>
+</html>
